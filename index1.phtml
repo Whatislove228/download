@@ -1,0 +1,50 @@
+<?php
+function Upload ()
+{
+ if(!empty($_FILES)) {
+     if ($_FILES['Picture']['size'] <= 2000000) {
+         $destination_dir = "";
+         if (!empty($_FILES) && $_FILES['Picture']['error'] == 0) { // Проверяем, загрузил ли пользователь файл
+             if ($_FILES['Picture']['type'] == 'image/jpeg' || $_FILES['Picture']['type'] == 'image/png' || $_FILES['Picture']['type'] == 'image/gif') {
+                 $destination_dir = "/var/www/SomeSite.com/download_files/load/image";
+             } else {
+                 $destination_dir = "/var/www/SomeSite.com/download_files/load"; // Директория для размещения фа
+             }
+             $name = basename($_FILES["Picture"]["name"]);
+             move_uploaded_file($_FILES['Picture']['tmp_name'], "$destination_dir/$name"); // Перемещаем файл в желаемую директорию
+             echo "File " . "<b>" . $_FILES['Picture']['name'] . "</b>" . " uploaded" . "<br>"; // Оповещаем пользовател
+         } else {
+             echo 'No File Uploaded'; // Оповещаем пользователя о том, что файл не был загружен
+         }
+         return $destination_dir;
+     } else {
+         echo "Файл слишком большой!";
+     }
+ }
+    else {
+        echo "Chose the file";
+    }
+}
+
+
+function EchoDir()
+{
+   $a = Upload(); // returned function Upload
+    if (!empty($a)) {
+        $files = scandir($a);
+        echo '<ol>';
+        foreach ($files as $value) {
+            if ($value != '.' and $value != '..') {
+                echo '<li><a href=$files ' . $value . '>' . $value . '</a></li><br>';
+            } else {
+            }
+        }
+        echo '</ol>';
+    }
+    return $a;
+}
+
+
+
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+<form action="" enctype="multipart/form-data" method="post">
+    <div class="forms">
+    <input type="file" name="Picture"/>
+        <button type="submit" class="btn btn-success">Отправить</button>
+     </div>
+    <?php
+    include("index1.phtml");
+    ?>
+    <div class="echo">
+        <?php
+        EchoDir();
+        ?>
+    </div>
+
+</form>
+</body>
+</html>
